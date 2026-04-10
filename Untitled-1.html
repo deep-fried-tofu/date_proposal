@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Date Proposal</title>
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin-top: 100px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+        margin: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    #noBtn {
+        background-color: #f44336;
+        color: white;
+        position: absolute;
+    }
+</style>
+</head>
+
+<body>
+
+<h1 id="text">Would you like to go out on a date?</h1>
+
+<button id="yesBtn" class="btn">Yes</button>
+<button id="noBtn" class="btn">No</button>
+
+<script>
+let yesSize = 1;
+let noSize = 1;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const text = document.getElementById("text");
+
+// Move NO button randomly
+function moveNoButton() {
+    const x = Math.random() * window.innerWidth * 0.8;
+    const y = Math.random() * window.innerHeight * 0.6;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+// When NO is clicked
+noBtn.addEventListener("click", () => {
+    noSize *= 0.8;
+    yesSize *= 1.2;
+
+    noBtn.style.transform = `scale(${noSize})`;
+    yesBtn.style.transform = `scale(${yesSize})`;
+
+    moveNoButton();
+});
+
+// When YES is clicked
+yesBtn.addEventListener("click", () => {
+    text.innerText = "I’ve been wanting to ask you this for a while ❤️,";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+});
+
+// Initial position
+moveNoButton();
+</script>
+
+</body>
+</html>
